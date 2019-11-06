@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+                {% for key in frontend_items.items %}
+                <div class="row mt-4">
+                <div class="col" id="{{ key.0 }}" >
+                <ul class="list-group">
+                <script>
+                    document.getElementById("{{ key.0 }}").style.backgroundColor= " {{ key.1.Ratingcolor }} ";
+                    </script>
+                    <li class="list-group-item" ><center><p style="font-size: 2em;"><strong>{{ key.1.name }}</strong></p></center>
+                        <br><b>Cuisines: </b>{{key.1.Cuisines}}
+                        <p class="float-right"><b>Currency: </b>{{key.1.Currency}}</p>
+                        <br><br><b>Average Cost for two: </b>{{key.1.AverageCostfortwo}}
+                        <p class="float-right"><b>Has Online Delivery: </b>{{key.1.HasOnlinedelivery}}</p>
+                        <br><br><b>Has Table booking: </b>{{key.1.HasTablebooking}}
+                        <p class="float-right"><b>Aggregate Rating: </b>{{key.1.Aggregaterating}}</p><br>
+                                            <center> <br><b>Votes: </b>{{key.1.Votes}}</center>
+                        <div>
+                            <form action="showkey/{{key.0}}/" method="post">
+                                {% csrf_token %}
+                                <br>
+                            <center><button type="submit" class="btn btn-success mb-2">View</button></center>
+                            </form>
+                        
+                    </div>
+                    </li>   
+                {% endfor %}        
+             </ul>
+    </div>
+</div>
+{% endblock %}
